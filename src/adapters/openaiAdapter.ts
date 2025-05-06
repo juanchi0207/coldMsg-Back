@@ -16,7 +16,7 @@ export class OpenAIMessageGenerator implements IMessageGenerator {
     });
 
     return res.choices.map(c =>
-      // Si content es null o undefined, cae al string vacío, luego trim()
+      // Si content es null o undefined, cae al string vacío, luego trim()//
       (c.message?.content ?? '').trim()
     );
   }

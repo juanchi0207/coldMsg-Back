@@ -15,8 +15,8 @@ export const generateMessagesController = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { senderProfile, recipientProfile, problem, solution } = req.body;
-    if (!senderProfile || !recipientProfile || !problem || !solution) {
+    const { senderProfile, recipientProfile, problem, solution, category } = req.body;
+    if (!senderProfile || !recipientProfile || !problem || !solution || !category) {
       res.status(400).json({ error: 'Faltan campos requeridos' });
       return;
     }
@@ -25,7 +25,8 @@ export const generateMessagesController = async (
       senderProfile,
       recipientProfile,
       problem,
-      solution
+      solution,
+      category
     );
     res.json({ messages });
   } catch (err) {

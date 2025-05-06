@@ -1,6 +1,7 @@
 
 import { IMessageGenerator } from '../interfaces/IMessageGenerator';
 import { IProfileFetcher } from '../interfaces/IProfileFetcher';
+import { ProfileSummarizerService } from './profileSummarizer';
 
 const categoryInstructions: Record<string, string> = {
   post_question: "Instrucción: El receptor publicó un post interesante. Escribí un mensaje comenzando por lo que te generó ese post y realizá una pregunta concreta.",
@@ -50,7 +51,8 @@ No uses lenguaje de venta directa. Que suene natural y realista.
 export class MessageService {
   constructor(
     private readonly generator: IMessageGenerator,
-    private readonly fetcher: IProfileFetcher
+    private readonly fetcher: IProfileFetcher,
+    private readonly summarizationService: ProfileSummarizerService
   ) {}
 
   async generate(
@@ -58,20 +60,27 @@ export class MessageService {
     recipientUrl: string,
     problem: string,
     solution: string,
-    category: string 
+    category: string
   ): Promise<string[]> {
     const senderInfo = await this.fetcher.fetchProfile(senderUrl);
-    const recipientInfo = await this.fetcher.fetchProfile(recipientUrl);
-
-    const prompt = buildPrompt(category, senderInfo, recipientInfo, problem, solution);
-    console.log('Prompt:', prompt);
+    const recipientData = await this.fetcher.fetchProfile(recipientUrl); // puede ser JSON detallado
+  
+    const recipientSummary = await this.summarizationService.getRecipientSummary(recipientData);
+  
+    const prompt = buildPrompt(
+      category,
+      senderInfo,
+      recipientSummary, // usamos el resumen estilizado en lugar del JSON crudo
+      problem,
+      solution
+    );
+  
     const [raw] = await this.generator.generateMessages(prompt);
-
-    const messages = raw
+  
+    return raw
       .split(/\d\.\s+/)
       .map(m => m.trim())
       .filter(Boolean);
-
-    return messages;
   }
+  
 }

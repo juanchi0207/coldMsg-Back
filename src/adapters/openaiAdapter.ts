@@ -11,7 +11,7 @@ export class OpenAIMessageGenerator implements IMessageGenerator {
     const res = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
-      n: 3,
+      n: 1,
       temperature: 0.7
     });
 

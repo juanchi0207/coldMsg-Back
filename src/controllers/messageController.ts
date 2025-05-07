@@ -2,12 +2,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { MessageService } from '../services/messageService';
 import { OpenAIMessageGenerator, OpenAIProfileSummarizer } from '../adapters/openaiAdapter';
-import { DummyLinkedInFetcher } from '../adapters/linkedinAdapter';
+import { LinkedinFetcher } from '../adapters/linkedinAdapter';
 import { ProfileSummarizerService } from '../services/profileSummarizer';
 
 const service = new MessageService(
   new OpenAIMessageGenerator(),
-  new DummyLinkedInFetcher(),
+  new LinkedinFetcher(),
   new ProfileSummarizerService(new OpenAIProfileSummarizer())
 );
 

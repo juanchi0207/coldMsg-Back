@@ -22,8 +22,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/coldmsg-back:latest \
-                       -t ghcr.io/${{ secrets.GHCR_USERNAME }}/coldmsg-back:${{ github.ref_name }} .
+          docker build \
+            --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            --build-arg PORT=${{ secrets.PORT }} \
+            -t ghcr.io/${{ secrets.GHCR_USERNAME }}/coldmsg-back:latest \
+            -t ghcr.io/${{ secrets.GHCR_USERNAME }}/coldmsg-back:${{ github.ref_name }} \
+            .
 
       - name: Push Docker image
         run: |

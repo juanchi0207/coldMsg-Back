@@ -39,7 +39,7 @@ Los mensajes deben estar escritos en un tono que refleje cómo se comunica el em
 Problema que el emisor detecta: ${problem}
 Solución que ofrece: ${solution}
 
-Generá 3 mensajes tipo icebreaker distintos, breves, humanos y conversacionales para iniciar una charla profesional por LinkedIn.
+Generá 3 mensajes tipo icebreaker distintos (de 2-3 líneas), breves, humanos y conversacionales para iniciar una charla profesional por LinkedIn.
 
 Formato esperado:
 1. [mensaje]

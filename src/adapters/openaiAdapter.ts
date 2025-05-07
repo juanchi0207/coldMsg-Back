@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { IMessageGenerator } from '../interfaces/IMessageGenerator';
 
+
 // Instancia el cliente
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY

@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export class OpenAIMessageGenerator implements IMessageGenerator {
   async generateMessages(prompt: string): Promise<string[]> {
     const res = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       messages: [{ role: 'user', content: prompt }],
       n: 1,
       temperature: 0.7

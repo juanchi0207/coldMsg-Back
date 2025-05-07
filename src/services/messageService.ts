@@ -1,6 +1,7 @@
 
 import { IMessageGenerator } from '../interfaces/IMessageGenerator';
 import { IProfileFetcher } from '../interfaces/IProfileFetcher';
+import { mockSenderPerfilSummary, mockRecipientPerfilSummary } from '../mocks/profileDataMocks';
 import { ProfileSummarizerService } from './profileSummarizer';
 
 const categoryInstructions: Record<string, string> = {
@@ -17,22 +18,23 @@ const categoryInstructions: Record<string, string> = {
 };
 
 function buildPrompt(
-  category: string,
+  //category: string,
   senderInfo: string,
-  recipientInfo: string,
+  recipientSummary: string,
   problem: string,
   solution: string
 ): string {
-  const instruction = categoryInstructions[category] || categoryInstructions["custom"];
+  //const instruction = categoryInstructions[category] || categoryInstructions["custom"];
 
   return `
-${instruction}
 
-Información del emisor:
-${senderInfo}
 
 Información del receptor:
-${recipientInfo}
+${recipientSummary}
+
+Instrucción adicional: 
+Los mensajes deben estar escritos en un tono que refleje cómo se comunica el emisor. Este es un resumen de su estilo de escritura y personalidad:
+"${senderInfo}"
 
 Problema que el emisor detecta: ${problem}
 Solución que ofrece: ${solution}
@@ -48,6 +50,7 @@ No uses lenguaje de venta directa. Que suene natural y realista.
 `;
 }
 
+
 export class MessageService {
   constructor(
     private readonly generator: IMessageGenerator,
@@ -60,21 +63,26 @@ export class MessageService {
     recipientUrl: string,
     problem: string,
     solution: string,
-    category: string
+    //category: string
   ): Promise<string[]> {
-    const senderInfo = await this.fetcher.fetchProfile(senderUrl);
-    const recipientData = await this.fetcher.fetchProfile(recipientUrl); // puede ser JSON detallado
+    const senderData = mockSenderPerfilSummary//await this.fetcher.fetchProfile(senderUrl);
+    const recipientData = mockRecipientPerfilSummary//await this.fetcher.fetchProfile(recipientUrl); // puede ser JSON detallado
   
+    
+    const senderSummary = await this.summarizationService.getSenderSummary(senderData);
     const recipientSummary = await this.summarizationService.getRecipientSummary(recipientData);
   
+    console.log('Resumen del emisor:', senderSummary);
+    console.log('Resumen del receptor:', recipientSummary);
+
     const prompt = buildPrompt(
-      category,
-      senderInfo,
+      //category,
+      senderSummary,
       recipientSummary, // usamos el resumen estilizado en lugar del JSON crudo
       problem,
       solution
     );
-  
+    console.log('Prompt:', prompt);
     const [raw] = await this.generator.generateMessages(prompt);
   
     return raw

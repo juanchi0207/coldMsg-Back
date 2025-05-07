@@ -6,4 +6,8 @@ export class ProfileSummarizerService {
     async getRecipientSummary(profileData: any): Promise<string> {
       return await this.summarizer.summarizePerfil(profileData);
     }
+
+    async getSenderSummary(profileData: any): Promise<string> {
+      return await this.summarizer.summarizePerfil(profileData);
+    }
   }

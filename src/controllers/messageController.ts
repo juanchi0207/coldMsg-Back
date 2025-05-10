@@ -1,14 +1,16 @@
 // controllers/messageController.ts
 import { Request, Response, NextFunction } from 'express';
 import { MessageService } from '../services/messageService';
-import { OpenAIMessageGenerator, OpenAIProfileSummarizer } from '../adapters/openaiAdapter';
+import { OpenAIgetCaracteristics, OpenAIMessageGenerator, OpenAIProfileSummarizer } from '../adapters/openaiAdapter';
 import { LinkedinFetcher } from '../adapters/linkedinAdapter';
 import { ProfileSummarizerService } from '../services/profileSummarizer';
+import { ProfileCharacteristicsService } from '../services/characteristicsService';
 
 const service = new MessageService(
   new OpenAIMessageGenerator(),
   new LinkedinFetcher(),
-  new ProfileSummarizerService(new OpenAIProfileSummarizer())
+  new ProfileSummarizerService(new OpenAIProfileSummarizer()),
+  new ProfileCharacteristicsService(new OpenAIgetCaracteristics())
 );
 
 export const generateMessagesController = async (

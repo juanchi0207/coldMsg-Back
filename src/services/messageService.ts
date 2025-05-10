@@ -67,7 +67,7 @@ export class MessageService {
   ): Promise<string[]> {
     const senderData = mockSenderPerfilSummary//await this.fetcher.fetchProfile(senderUrl);
     const recipientData = mockRecipientPerfilSummary//await this.fetcher.fetchProfile(recipientUrl); // puede ser JSON detallado
-  
+   
     
     const senderSummary = await this.summarizationService.getSenderSummary(senderData);
     const recipientSummary = await this.summarizationService.getRecipientSummary(recipientData);

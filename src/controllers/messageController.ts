@@ -25,13 +25,14 @@ export const generateMessagesController = async (
       res.status(400).json({ error: 'Faltan campos requeridos' });
       return;
     }*/
-    const { senderProfile, recipientProfile, problem, solution } = req.body;
-    if (!senderProfile || !recipientProfile || !problem || !solution ) {
+    const {idioma, senderProfile, recipientProfile, problem, solution } = req.body;
+    if (!idioma || !senderProfile || !recipientProfile || !problem || !solution ) {
       res.status(400).json({ error: 'Faltan campos requeridos' });
       return;
     }
 
     const messages = await service.generate(
+      idioma,
       senderProfile,
       recipientProfile,
       problem,

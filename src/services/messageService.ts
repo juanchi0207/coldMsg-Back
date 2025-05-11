@@ -21,6 +21,7 @@ const categoryInstructions: Record<string, string> = {
 
 function buildPrompt(
   //category: string,
+  idioma: string,
   senderInfo: string,
   recipientSummary: string,
   problem: string,
@@ -30,6 +31,7 @@ function buildPrompt(
 
   return `
 
+Generá las respuestas en idioma ${idioma}.
 
 Información del receptor:
 ${recipientSummary}
@@ -62,10 +64,12 @@ export class MessageService {
   ) {}
 
   async generate(
+    idioma: string,
     senderUrl: string,
     recipientUrl: string,
     problem: string,
     solution: string,
+    
     //category: string
   ): Promise<string[]> {
 
@@ -95,6 +99,7 @@ export class MessageService {
 
     const prompt = buildPrompt(
       //category,
+      idioma,
       senderSummary,
       recipientSummary, // usamos el resumen estilizado en lugar del JSON crudo
       problem,

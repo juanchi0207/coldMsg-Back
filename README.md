@@ -11,7 +11,8 @@
 - [Cómo Correr en Desarrollo](#cómo-correr-en-desarrollo)
 - [Generar Build y Correr en Producción](#generar-build-y-correr-en-producción)
 - [Cómo Funciona](#cómo-funciona)
-- [Ejemplo de Uso](#ejemplo-de-uso)
+- [Ejemplo de Uso](#ejemplo-de-uso)}
+- [Correr todo con Docker](#correr-todo-con-docker)
 
 
 ## Descripción
@@ -113,5 +114,15 @@ Content-Type: application/json
 2. Creá una red para que los servicios se comuniquen:
 
 ```bash
-docker network create coldmessages-net
+docker network create coldmsg-net
 ```
+```bash
+docker pull ghcr.io/juanchi0207/coldmsg-back:dev (o main)
+docker pull ghcr.io/juanchi0207/coldmsg-front:dev (o main)
+```
+```bash
+docker run -d --name coldmsg-front --network coldmsg-net -p 80:80 ghcr.io/juanchi0207/coldmsg-front:dev
+docker run -d --name coldmsg-back --network coldmsg-net -p 8080:8080 ghcr.io/juanchi0207/coldmsg-back:dev
+
+```
+

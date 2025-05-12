@@ -12,9 +12,7 @@
 - [Generar Build y Correr en Producción](#generar-build-y-correr-en-producción)
 - [Cómo Funciona](#cómo-funciona)
 - [Ejemplo de Uso](#ejemplo-de-uso)
-- [Contribución](#contribución)
-- [Licencia](#licencia)
-- [Contacto](#contacto)
+
 
 ## Descripción
 
@@ -90,3 +88,30 @@ El backend realiza los siguientes pasos:
 3. Genera un **resumen de estilo** con **OpenAI**
 4. Construye el **prompt** de generación
 5. Llama a **OpenAI** para generar **3 mensajes tipo icebreaker** listos para usar
+
+## Ejemplo de uso
+
+### Request desde el cliente
+
+```json
+POST /generate
+Content-Type: application/json
+
+{
+  "senderUrl": "https://www.linkedin.com/in/juanperez/",
+  "recipientUrl": "https://www.linkedin.com/in/adamselipsky/",
+  "problem": "Muchas empresas luchan por implementar IA de forma práctica en sus equipos de trabajo.",
+  "solution": "Ayudamos a product teams a aterrizar casos de uso de IA y prototiparlos en días, no meses.",
+  "language": "es"
+}
+
+```
+
+## Correr todo con Docker
+
+1. Cloná el proyecto y asegurate de tener Docker instalado.
+2. Creá una red para que los servicios se comuniquen:
+
+```bash
+docker network create coldmessages-net
+```

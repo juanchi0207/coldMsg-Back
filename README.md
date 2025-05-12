@@ -8,7 +8,7 @@
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Variables de Entorno](#variables-de-entorno)
-- [Cómo Correr en Desarrollo](#️-cómo-correr-en-desarrollo)
+- [Cómo Correr en Desarrollo](#cómo-correr-en-desarrollo)
 - [Generar Build y Correr en Producción](#generar-build-y-correr-en-producción)
 - [Cómo Funciona](#cómo-funciona)
 - [Ejemplo de Uso](#ejemplo-de-uso)

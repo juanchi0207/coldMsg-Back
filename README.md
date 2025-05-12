@@ -99,11 +99,11 @@ POST /generate
 Content-Type: application/json
 
 {
+  "idioma":"Español (ARG)"
   "senderUrl": "https://www.linkedin.com/in/juanperez/",
   "recipientUrl": "https://www.linkedin.com/in/adamselipsky/",
   "problem": "Muchas empresas luchan por implementar IA de forma práctica en sus equipos de trabajo.",
   "solution": "Ayudamos a product teams a aterrizar casos de uso de IA y prototiparlos en días, no meses.",
-  "language": "es"
 }
 
 ```

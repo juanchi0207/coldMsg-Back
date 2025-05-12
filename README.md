@@ -51,7 +51,7 @@ coldMsg-Back/
 └── README.md
 ```
 
-## ⚙️ Variables de entorno
+## Variables de entorno
 
 Crear archivos `.env.development` y `.env.production` según corresponda. Las variables necesarias son:
 
@@ -61,21 +61,21 @@ RAPIDAPI_KEY=your_rapidapi_key
 PORT=3000 en dev || 8080 en prod 
 ```
 
-## 🧪 Cómo correr en desarrollo
+## Cómo correr en desarrollo
 
 ```bash
 npm install
 npm run dev
 ```
 
-## 🏗️ Cómo generar build y correr en producción
+## Cómo generar build y correr en producción
 
 ```bash
 npm run build
 npm start
 ```
 
-## ✍️ Cómo funciona
+## Cómo funciona
 
 El cliente envía una solicitud con:
 

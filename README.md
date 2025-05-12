@@ -13,6 +13,7 @@
 - [Cómo Funciona](#cómo-funciona)
 - [Ejemplo de Uso](#ejemplo-de-uso)}
 - [Correr todo con Docker](#correr-todo-con-docker)
+- [Correr todo con Docker Compose](#correr-todo-con-docker-compose)
 
 
 ## Descripción
@@ -126,3 +127,35 @@ docker run -d --name coldmsg-back --network coldmsg-net -p 8080:8080 ghcr.io/jua
 
 ```
 
+## Correr todo con Docker Compose
+
+Si preferís usar Docker Compose para simplificar el levantado de servicios:
+
+Usá el siguiente `docker-compose.yml`:
+
+```yaml
+version: '3.8'
+
+services:
+  backend:
+    image: ghcr.io/juanchi0207/coldmsg-back:main   # cambia “main” por “dev” si quieres la versión dev
+    container_name: coldmsg-back
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    networks:
+      - coldmsg-net
+
+  frontend:
+    image: ghcr.io/juanchi0207/coldmsg-front:main  # idem, usa “dev” si corresponde
+    container_name: coldmsg-front
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    networks:
+      - coldmsg-net
+
+networks:
+  coldmsg-net:
+    driver: bridge
+```

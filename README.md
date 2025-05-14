@@ -131,7 +131,7 @@ docker run -d --name coldmsg-back --network coldmsg-net -p 8080:8080 ghcr.io/jua
 
 Si preferís usar Docker Compose para simplificar el levantado de servicios:
 
-Usá el siguiente `docker-compose.yml`:
+1. Usá el siguiente `docker-compose.yml`:
 
 ```yaml
 version: '3.8'
@@ -158,4 +158,10 @@ services:
 networks:
   coldmsg-net:
     driver: bridge
+```
+
+2. Levantá los servicios con:
+
+```bash
+docker-compose up -d
 ```

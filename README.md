@@ -11,7 +11,7 @@
 - [Cómo Correr en Desarrollo](#cómo-correr-en-desarrollo)
 - [Generar Build y Correr en Producción](#generar-build-y-correr-en-producción)
 - [Cómo Funciona](#cómo-funciona)
-- [Ejemplo de Uso](#ejemplo-de-uso)}
+- [Ejemplo de Uso](#ejemplo-de-uso)
 - [Correr todo con Docker](#correr-todo-con-docker)
 - [Correr todo con Docker Compose](#correr-todo-con-docker-compose)
 

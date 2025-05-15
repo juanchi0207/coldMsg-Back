@@ -13,21 +13,23 @@ const service = new MessageService(
   new ProfileCharacteristicsService(new OpenAIgetCaracteristics())
 );
 
+const linkedInPattern = /^https:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/;
+
 export const generateMessagesController = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    /*
-    const { senderProfile, recipientProfile, problem, solution, category } = req.body;
-    if (!senderProfile || !recipientProfile || !problem || !solution || !category) {
-      res.status(400).json({ error: 'Faltan campos requeridos' });
-      return;
-    }*/
+    // Validar que los campos requeridos estén presentes
     const {idioma, senderProfile, recipientProfile, problem, solution } = req.body;
     if (!idioma || !senderProfile || !recipientProfile || !problem || !solution ) {
       res.status(400).json({ error: 'Faltan campos requeridos' });
+      return;
+    }
+
+    if (!linkedInPattern.test(senderProfile) || !linkedInPattern.test(recipientProfile)) {
+      res.status(400).json({ error: 'URLs de LinkedIn inválidas' });
       return;
     }
 

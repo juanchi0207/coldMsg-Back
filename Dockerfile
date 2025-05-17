@@ -10,10 +10,12 @@ FROM node:20-alpine
 
 # recibo build-args
 ARG OPENAI_API_KEY
-ARG PORT  
+ARG PORT
+ARG RAPIDAPI_KEY  
 # los hago variables de entorno dentro de la imagen
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 ENV PORT=${PORT}
+ENV RAPIDAPI_KEY=${RAPIDAPI_KEY}
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY package*.json ./

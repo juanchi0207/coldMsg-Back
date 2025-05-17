@@ -27,13 +27,13 @@ export class MessageService {
   ): Promise<string[]> {
 
 
-    const senderData = senderDataMock//await this.fetcher.fetchProfile(senderUrl);
-    const senderPosts = senderPostsMock//await this.fetcher.fetchPosts(senderUrl);
+    const senderData = await this.fetcher.fetchProfile(senderUrl);
+    const senderPosts = await this.fetcher.fetchPosts(senderUrl);
     console.log('Sender Data:', senderData);
     console.log('Sender Posts:', senderPosts);
     
-    const recipientData = recipientDataMock//await this.fetcher.fetchProfile(recipientUrl); 
-    const recipientPosts = recipientPostsMock//await this.fetcher.fetchPosts(recipientUrl);
+    const recipientData = await this.fetcher.fetchProfile(recipientUrl); 
+    const recipientPosts = await this.fetcher.fetchPosts(recipientUrl);
 
     console.log('Recipient Data:', recipientData);
     console.log('Recipient Posts:', recipientPosts);
